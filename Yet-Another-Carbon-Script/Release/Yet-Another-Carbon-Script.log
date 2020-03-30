@@ -1,0 +1,8 @@
+﻿  pch.cpp
+  dllmain.cpp
+c:\users\miles dipperion\source\repos\yet-another-carbon-script\yet-another-carbon-script\dllmain.cpp(101): warning C4326: return type of 'main' should be 'int' instead of 'void'
+  Generating code
+c:\users\miles dipperion\source\repos\yet-another-carbon-script\yet-another-carbon-script\dllmain.cpp(98): warning C4715: 'MainThread': not all control paths return a value
+  All 96 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.
+  Finished generating code
+  Yet-Another-Carbon-Script.vcxproj -> C:\Users\Miles Dipperion\source\repos\Yet-Another-Carbon-Script\Release\Yet-Another-Carbon-Script.dll
