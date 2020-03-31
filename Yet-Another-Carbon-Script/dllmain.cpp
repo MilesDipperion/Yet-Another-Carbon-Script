@@ -108,7 +108,8 @@ void main()
 	// Debugging
 	AllocConsole();
 	freopen("CONOUT$", "w", stdout);
-	std::cout << "HUD Update Rate: " << HUDUpdateRate << std::endl;
+	std::cout << "Date of compiling: " << __DATE__ << std::endl;
+	std::cout << "Time of compiling: " << __TIME__ << std::endl;
 
 	// SkipFE
 	injector::WriteMemory(0xA9E620, 1, true);
@@ -148,7 +149,44 @@ void main()
 	injector::MakeNOP(0x71D117, 10, true);
 
 	// Fix key remapping
-	injector::WriteMemory<int>(0x692539, 29, true);
+	injector::WriteMemory<int>(0x692539, 28, true);
+
+	// all vinyls are editable
+	injector::MakeJMP(0x577FD0, ReturnTrue, true);
+
+	// all vinyls are mirrorable
+	injector::MakeJMP(0x577BB0, ReturnTrue, true);
+
+	// all vinyls are deformable
+	injector::MakeJMP(0x5779F0, ReturnFalse, false);
+
+	// remove vehicle specific vinyl restrictions
+	injector::MakeNOP(0x588B8B, 2, true);
+	injector::MakeNOP(0x588B96, 2, true);
+
+	// make manufacturer logo vinyls colorable
+	injector::MakeNOP(0x577FA3, 2, true);
+	injector::MakeNOP(0x577FAA, 2, true);
+
+	// show the generic vinyls category
+	injector::MakeNOP(0x588BA8, 2, true);
+	injector::MakeNOP(0x588BAD, 2, true);
+
+	// hide vinyl color option
+	injector::MakeNOP(0x8411BF, 2, true);
+	injector::MakeNOP(0x8411C6, 2, true);
+
+	// Show all things in FNGs
+	//injector::MakeJMP(0x5711C0, ReturnFalse, false);
+
+	// New car for SkipFE
+	injector::WriteMemory(0x00A63144, "911turbo", true);
+
+	// Vanishing wheels fix
+	injector::WriteMemory<unsigned char>(0x7bddbc, 0x01, true);
+
+	// SkipFEDisableCops
+	injector::WriteMemory(0x00A63158, 0, true);
 }
 
 BOOL APIENTRY DllMain( HMODULE hModule,
